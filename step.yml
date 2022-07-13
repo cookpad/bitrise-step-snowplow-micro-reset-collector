@@ -61,3 +61,6 @@ deps:
 toolkit:
   bash:
     entry_file: step.sh
+
+inputs:
+  - collector_url: ${BITRISE_SNOWPLOW_COLLECTOR_URL}
