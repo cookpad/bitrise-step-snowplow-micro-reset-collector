@@ -16,7 +16,10 @@ workflows:
     steps:
     - path::./:
         title: Reset Snowplow Micro Server
-
+    - script:
+        title: Add collector url from the environment variable `BITRISE_SNOWPLOW_COLLECTOR_URL`
+        inputs:
+        - collector_url: "${BITRISE_SNOWPLOW_COLLECTOR_URL}"
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library
   audit-this-step:
