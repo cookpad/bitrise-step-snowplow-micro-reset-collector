@@ -20,6 +20,12 @@ fi
 # Set the summary as an output for use in future steps
 envman add --key SNOWPLOW_MICRO_COLLECTOR_SUMMARY --value "$summary"
 
+# Downgrade any errors if fail_for_bad_reset is turned off
+if [ "$fail_for_bad_reset" = "no" ]
+then
+  unset exit_code
+fi
+
 # Finish and exit with the appropriate code
 echo "$summary"
 exit "${exit_code:-0}"
