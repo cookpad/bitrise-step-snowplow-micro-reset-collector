@@ -11,8 +11,15 @@ total=$(jq -r '.total' <<< "$result")
 # Check the result and produce a summary, mark the step as failed if required
 if [[ -z $total ]] || [[ $total -gt 0 ]]
 then
-  echo "The Snowplow micro failed to reset."
-  exit 1
+  exit_code=1
+  summary="The collector failed to reset"
 else
-  echo "Collector reset successfully"
+  summary="The collector was reset successfully"
 fi
+
+# Set the summary as an output for use in future steps
+envman add --key SNOWPLOW_MICRO_COLLECTOR_SUMMARY --value "$summary"
+
+# Finish and exit with the appropriate code
+echo "$summary"
+exit "${exit_code:-0}"
