@@ -37,5 +37,5 @@ elif [[ $total -gt 0 ]]
 then
   finish "The collector failed to reset" 1
 else
-  finish "The collector was reset successfully" 0
+  finish "The collector was reset, waiting for events" 0
 fi
