@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Reset the Snowplow collector state
-echo "Reset the state of the collector at $collector_url..."
-result=$(curl --silent "$collector_url/micro/reset")
+echo "Resetting the state of the collector at $collector_url..."
+result=$(curl "$collector_url/micro/reset")
+echo "Response from the server: '$result'"
 
 # Parse the results
 total=$(jq -r '.total' <<< "$result")
